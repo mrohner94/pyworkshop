@@ -17,6 +17,9 @@ def repos_with_most_stars(languages, sort="stars", order="desc"):
 
     response = requests.get(gh_api_url, params)
 
+    if response.status_code != 200:
+        raise RuntimeError(f"An error occured.  Status code was: {response.status_code}")
+    
     response_json = response.json()["items"]
     return response_json
 
